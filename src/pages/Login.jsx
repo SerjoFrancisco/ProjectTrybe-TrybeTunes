@@ -37,8 +37,10 @@ export default class Login extends Component {
     const { isButtonDisabled, isLoading } = this.state;
     return (
       <section>
-        { isLoading ? <Loading />
-          : <div data-testid="page-login">
+        { isLoading ? (
+          <Loading />
+        ) : (
+          <div data-testid="page-login">
             <label htmlFor="login-form">
               <input
                 type="text"
@@ -56,7 +58,7 @@ export default class Login extends Component {
             >
               Entrar
             </button>
-          </div>}
+          </div>)}
       </section>
     );
   }
