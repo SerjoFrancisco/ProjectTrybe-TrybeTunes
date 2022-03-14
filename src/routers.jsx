@@ -7,6 +7,7 @@ import Favorites from './pages/Favorites/index';
 import Profile from './pages/Profile/index';
 import ProfileEdit from './pages/Profile/Edit/index';
 import NotFound from './pages/NotFound/index';
+import Loading from './pages/Loading';
 
 const Routes = () => (
   <Switch>
@@ -16,6 +17,7 @@ const Routes = () => (
     <Route exact path="/favorites" component={ Favorites } />
     <Route exact path="/profile" component={ Profile } />
     <Route exact path="/profile/edit" component={ ProfileEdit } />
+    <Route exact path="/loading" component={ Loading } />
     <Route path="*" component={ NotFound } />
   </Switch>
 );
