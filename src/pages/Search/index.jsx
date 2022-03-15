@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Header from '../../components/Header';
 import searchAlbumsAPI from '../../services/searchAlbumsAPI';
-import Loading from '../Loading';
 import AlbumList from '../AlbumList';
 
 export default class Search extends Component {
@@ -12,8 +11,8 @@ export default class Search extends Component {
     this.state = {
       search: '',
       isButtonDisabled: true,
-      isLoading: false,
       albuns: [],
+      artist: '',
     };
   }
 
@@ -30,11 +29,11 @@ export default class Search extends Component {
   async handleClick() {
     const { search } = this.state;
     const albuns = await searchAlbumsAPI(search);
-    this.setState({ albuns });
+    this.setState({ artist: search, search: '', albuns });
   }
 
   render() {
-    const { isButtonDisabled, albuns } = this.state;
+    const { isButtonDisabled, albuns, search, artist } = this.state;
     return (
       <div data-testid="page-search">
         <Header />
@@ -43,20 +42,30 @@ export default class Search extends Component {
             type="text"
             data-testid="search-artist-input"
             onChange={ this.handleChange }
+            value={ search }
           />
           <button
             type="button"
             data-testid="search-artist-button"
             disabled={ isButtonDisabled }
+            onClick={ this.handleClick }
           >
             Pesquisar
           </button>
         </section>
-        { albuns?.map((album) => (
-          <AlbumList
-            key={ album.collectionId }
-            { ...albuns }
-          />))}
+        { !albuns.length ? (<p>Nenhum álbum foi encontrado</p>) : (
+          <section>
+            <h3>{`Resultado de álbuns de: ${artist}`}</h3>
+            <div>
+              {albuns?.map((album) => (
+                <AlbumList
+                  key={ album.collectionId }
+                  { ...album }
+                />
+              ))}
+            </div>
+          </section>
+        )}
       </div>
     );
   }

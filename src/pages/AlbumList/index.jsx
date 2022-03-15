@@ -1,21 +1,29 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
-import Loading from '../Loading';
+import { Link } from 'react-router-dom';
 
 export default class AlbumList extends Component {
   render() {
-    const { collectionName, collectionId, artistName, artworkUrl100 } = this.props;
+    const { collectionName,
+      collectionId,
+      artistName,
+      artworkUrl100 } = this.props;
     return (
-      <div>
-        {isLoading ? (
-          <Loading />
-        ) : (
-          <div data-testid={ `link-to-album-${collectionId}` }>
-            <h3>{collectionName}</h3>
-            <img src={ artworkUrl100 } alt="" />
-            <p>{artistName}</p>
-          </div>)}
-      </div>
+      <section>
+        { !collectionId ? (<p>Nenhum álbum foi encontrado</p>)
+          : (
+            <section>
+
+              <Link to={ `/album/${collectionId}` }>
+                <div data-testid={ `link-to-album-${collectionId}` }>
+                  <h3>{collectionName}</h3>
+                  <img src={ artworkUrl100 } alt="" />
+                  <p>{artistName}</p>
+                </div>
+              </Link>
+            </section>
+          )}
+      </section>
     );
   }
 }
