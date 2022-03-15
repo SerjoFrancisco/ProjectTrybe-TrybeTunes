@@ -17,7 +17,6 @@ export default class Login extends Component {
 
   handleChange({ target }) {
     const minLength = 3;
-    console.log(target.value.length);
     if (target.value.length >= minLength) {
       this.setState({ isButtonDisabled: false });
     } else {
@@ -67,6 +66,6 @@ export default class Login extends Component {
 
 Login.propTypes = {
   history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
+    push: PropTypes.func,
   }).isRequired,
 };

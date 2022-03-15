@@ -1,29 +1,40 @@
 import React, { Component } from 'react';
 import Header from '../../components/Header';
+import searchAlbumsAPI from '../../services/searchAlbumsAPI';
+import Loading from '../Loading';
+import AlbumList from '../AlbumList';
 
 export default class Search extends Component {
   constructor() {
     super();
     this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
     this.state = {
-      // search: '',
+      search: '',
       isButtonDisabled: true,
+      isLoading: false,
+      albuns: [],
     };
   }
 
   handleChange({ target }) {
     const minLength = 2;
-    console.log(target.value.length);
     if (target.value.length >= minLength) {
       this.setState({ isButtonDisabled: false });
     } else {
       this.setState({ isButtonDisabled: true });
     }
-    // this.setState({ search: target.value });
+    this.setState({ search: target.value });
+  }
+
+  async handleClick() {
+    const { search } = this.state;
+    const albuns = await searchAlbumsAPI(search);
+    this.setState({ albuns });
   }
 
   render() {
-    const { isButtonDisabled } = this.state;
+    const { isButtonDisabled, albuns } = this.state;
     return (
       <div data-testid="page-search">
         <Header />
@@ -41,6 +52,11 @@ export default class Search extends Component {
             Pesquisar
           </button>
         </section>
+        { albuns?.map((album) => (
+          <AlbumList
+            key={ album.collectionId }
+            { ...albuns }
+          />))}
       </div>
     );
   }
