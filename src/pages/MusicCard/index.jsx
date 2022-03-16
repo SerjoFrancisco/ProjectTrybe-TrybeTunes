@@ -10,13 +10,12 @@ export default class MusicCard extends Component {
     this.checkFavorites = this.checkFavorites.bind(this);
     this.state = {
       isFavorite: false,
-      isLoading: false,
+      isLoading: true,
       favorites: [],
     };
   }
 
   async componentDidMount() {
-    this.setState({ isLoading: true });
     const favorites = await getFavoriteSongs();
     this.setState({ favorites, isLoading: false }, () => this.checkFavorites());
   }
@@ -33,14 +32,14 @@ export default class MusicCard extends Component {
     if (target.checked) {
       this.setState({ isLoading: true });
       await addSong(this.props);
-      const favorites = await getFavoriteSongs();
-      this.setState({ isFavorite: true, isLoading: false, favorites });
+      this.setState({ isFavorite: true, isLoading: false });
     } else {
       this.setState({ isLoading: true });
       await removeSong(this.props);
-      const favorites = await getFavoriteSongs();
-      this.setState({ isFavorite: false, isLoading: false, favorites });
+      this.setState({ isFavorite: false, isLoading: false });
     }
+    const favorites = await getFavoriteSongs();
+    this.setState({ favorites });
   }
 
   render() {
@@ -77,4 +76,6 @@ export default class MusicCard extends Component {
 MusicCard.propTypes = {
   trackName: propTypes.string,
   previewUrl: propTypes.string,
+  trackId: propTypes.string,
+
 }.isRequired;
