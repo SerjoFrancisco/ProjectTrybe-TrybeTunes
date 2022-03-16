@@ -40,7 +40,7 @@ export default class Album extends Component {
         <section>
           {musics?.map((music, i) => (
             i === 0 ? (
-              <p>Musicas</p>
+              <p key="ignore1">Musicas</p>
             ) : (
               <MusicCard
                 key={ music.trackId }
