@@ -27,7 +27,7 @@ export default class Album extends Component {
     const musics = await getMusics(collectionId);
     this.setState({ musics,
       artist: musics[0].artistName,
-      album: musics[0].collectionName }, () => console.log(musics));
+      album: musics[0].collectionName });
   }
 
   render() {
