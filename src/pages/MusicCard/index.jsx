@@ -29,6 +29,7 @@ export default class MusicCard extends Component {
   }
 
   async manageFavorites({ target }) {
+    const { updateFavorites } = this.props;
     if (target.checked) {
       this.setState({ isLoading: true });
       await addSong(this.props);
@@ -38,8 +39,7 @@ export default class MusicCard extends Component {
       await removeSong(this.props);
       this.setState({ isFavorite: false, isLoading: false });
     }
-    const favorites = await getFavoriteSongs();
-    this.setState({ favorites });
+    updateFavorites();
   }
 
   render() {

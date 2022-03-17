@@ -8,7 +8,6 @@ export default class Favorites extends Component {
   constructor() {
     super();
     this.updateFavorites = this.updateFavorites.bind(this);
-    this.childRef = React.createRef(MusicCard);
     this.state = {
       favorites: [],
       isLoading: true,
@@ -21,8 +20,9 @@ export default class Favorites extends Component {
   }
 
   async updateFavorites() {
+    this.setState({ isLoading: true });
     const favorites = await getFavoriteSongs();
-    this.setState({ favorites });
+    this.setState({ favorites, isLoading: false });
   }
 
   render() {
@@ -37,6 +37,7 @@ export default class Favorites extends Component {
                 ref={ this.childRef }
                 key={ music.trackId }
                 { ...music }
+                updateFavorites={ this.updateFavorites }
               />
             )))}
         </section>
