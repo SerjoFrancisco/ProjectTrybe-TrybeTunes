@@ -26,7 +26,7 @@ export default class ProfileEdit extends Component {
       isLoading: false,
       email: user.email,
       image: user.image,
-      description: user.description });
+      description: user.description }, () => this.validadeForm());
   }
 
   handleChange({ target }) {
@@ -63,7 +63,6 @@ export default class ProfileEdit extends Component {
         {isLoading ? (<Loading />)
           : (
             <div>
-              <h2>Editar perfil</h2>
               <form action="">
                 <label htmlFor="name">
                   <input
