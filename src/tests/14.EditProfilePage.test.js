@@ -77,7 +77,7 @@ describe('14 - Crie o formulário de edição de perfil', () => {
   it('Será validado se o botão salvar é habilitado somente se todos os campos estiverem válidos',
     async () => {
       localStorage.setItem('user', JSON.stringify({
-        name: "User Test", 
+        name: "User Test",
         email: "",
         description: "",
         image: ""

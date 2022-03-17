@@ -18,12 +18,6 @@ export default class Profile extends Component {
     this.setState({ user, isLoading: false });
   }
 
-  // user {
-  //   name: '',
-  //   email: '',
-  //   image: '',
-  //   description: '',
-  // };
   render() {
     const { user, isLoading } = this.state;
     return (
@@ -36,10 +30,10 @@ export default class Profile extends Component {
               <img src={ user.image } alt={ user.name } data-testid="profile-image" />
               <p>{user.email}</p>
               <p>{user.description}</p>
-              <Link to="/profile/edit">Editar perfil</Link>
             </div>
 
           )}
+        <Link to="/profile/edit">Editar perfil</Link>
       </div>
     );
   }
