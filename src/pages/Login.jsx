@@ -42,6 +42,7 @@ export default class Login extends Component {
         ) : (
           <div data-testid="page-login">
             <label htmlFor="login-form">
+              Digite um Email válido:
               <input
                 type="text"
                 data-testid="login-name-input"
