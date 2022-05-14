@@ -4,3 +4,4 @@ Neste projeto em React treinei requisições a api e funções assincronas, Toda
 Renderizar de forma condicional alguns elementos e utilizar react Router. Tudo foi feito em componente de classe.
 
 Para rodar este projeto localmente é necessário apenas usar "npm install" e "npm start" após clonar o repositório. 
+Ou acesse [aqui](https://sergio-trybetunes.vercel.app/)
