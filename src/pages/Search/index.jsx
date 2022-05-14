@@ -26,7 +26,8 @@ export default class Search extends Component {
     this.setState({ search: target.value });
   }
 
-  async handleClick() {
+  async handleClick(event) {
+    event.preventDefault();
     const { search } = this.state;
     const albuns = await searchAlbumsAPI(search);
     this.setState({ artist: search, search: '', albuns });
@@ -38,20 +39,22 @@ export default class Search extends Component {
       <div data-testid="page-search">
         <Header />
         <section>
-          <input
-            type="text"
-            data-testid="search-artist-input"
-            onChange={ this.handleChange }
-            value={ search }
-          />
-          <button
-            type="button"
-            data-testid="search-artist-button"
-            disabled={ isButtonDisabled }
-            onClick={ this.handleClick }
-          >
-            Pesquisar
-          </button>
+          <form onSubmit={ this.handleClick }>
+
+            <input
+              type="text"
+              data-testid="search-artist-input"
+              onChange={ this.handleChange }
+              value={ search }
+            />
+            <button
+              type="button"
+              data-testid="search-artist-button"
+              disabled={ isButtonDisabled }
+            >
+              Pesquisar
+            </button>
+          </form>
         </section>
         { !albuns.length ? (<p>Nenhum álbum foi encontrado</p>) : (
           <section>

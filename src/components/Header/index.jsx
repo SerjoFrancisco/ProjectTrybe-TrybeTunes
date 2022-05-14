@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { FaUser, FaStar, FaSearch } from 'react-icons/fa';
 import { getUser } from '../../services/userAPI';
 import Loading from '../../pages/Loading';
 
@@ -24,28 +25,26 @@ export default class Header extends Component {
         {isLoading ? (
           <Loading />
         ) : (
-          <section>
+          <section className="header">
 
             <div data-testid="header-component">
-              Header
               <h3 data-testid="header-user-name">{ user }</h3>
             </div>
+            <Link to="/search">
+              <h1 className="title">YouTunes</h1>
+            </Link>
             <nav>
               <Link to="/search" data-testid="link-to-search">
-                <button type="button">
-                  Search
-                </button>
+                <FaSearch className="icon" />
+
               </Link>
               <Link to="/favorites" data-testid="link-to-favorites">
-                <button type="button">
-                  Favorites
-                </button>
+                <FaStar className="icon" />
 
               </Link>
               <Link to="/profile" data-testid="link-to-profile">
-                <button type="button">
-                  Profile
-                </button>
+
+                <FaUser className="icon" />
 
               </Link>
             </nav>

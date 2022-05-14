@@ -64,6 +64,7 @@ export default class ProfileEdit extends Component {
           : (
             <div>
               <form action="">
+                Name:
                 <label htmlFor="name">
                   <input
                     type="text"
@@ -73,8 +74,10 @@ export default class ProfileEdit extends Component {
                     value={ name }
                     onChange={ this.handleChange }
                   />
+                  <br />
                 </label>
                 <label htmlFor="email">
+                  Email:
                   <input
                     type="email"
                     id="email"
@@ -82,9 +85,12 @@ export default class ProfileEdit extends Component {
                     data-testid="edit-input-email"
                     value={ email }
                     onChange={ this.handleChange }
+                    placeholder="Email"
                   />
+                  <br />
                 </label>
                 <label htmlFor="description">
+                  Description:
                   <input
                     type="text"
                     data-testid="edit-input-description"
@@ -92,9 +98,12 @@ export default class ProfileEdit extends Component {
                     name="description"
                     value={ description }
                     onChange={ this.handleChange }
+                    placeholder="Description"
                   />
+                  <br />
                 </label>
                 <label htmlFor="image">
+                  Image:
                   <input
                     type="text"
                     data-testid="edit-input-image"
@@ -102,8 +111,9 @@ export default class ProfileEdit extends Component {
                     name="image"
                     value={ image }
                     onChange={ this.handleChange }
+                    PlaceHolder="ImageURL"
                   />
-
+                  <br />
                 </label>
                 <button
                   type="button"

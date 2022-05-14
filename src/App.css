@@ -1,0 +1,18 @@
+.icon {
+  color:black;
+  height: 25px;
+  margin-top: 10px;
+  padding: 2px;
+  width: 25px;
+}
+
+.header {
+  border-bottom: 1px solid grey;
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  color: black;
+  text-decoration: none;
+}
